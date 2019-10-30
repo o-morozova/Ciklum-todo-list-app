@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>TODOList</title>
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <script defer src="scripts/main.js"></script>
+</head>
+<body>
+<h1>TODOList</h1>
+<hr>
+
+<div class="grid-container">
+    <div class="search-form">
+        <form action="" method="get">
+            <input type="text" placeholder="search by title" id="searchInput" name="search">
+            <button type="submit"></button>
+        </form>
+    </div>
+
+    <div class="status-dropdown">
+        <form action="">
+            <select name="status" id="status">
+                <option value="all">all</option>
+                <option value="open">open</option>
+                <option value="done">done</option>
+            </select>
+            <br><br>
+        </form>
+    </div>
+
+    <div class="priority-dropdown">
+        <form action="">
+            <select name="priority" id="priority">
+                <option value="all">all</option>
+                <option value="high">high</option>
+                <option value="normal">normal</option>
+                <option value="low">low</option>
+            </select>
+            <br><br>
+        </form>
+    </div>
+
+    <div class="create-task">
+        <input id="createButton" type="submit" value="Create">
+    </div>
+</div>
+<!--Container for the list of tasks-->
+<div class="taskList" id="taskList">
+    <div class="taskItem" id="taskItem_0">
+        <h4>Task item 0</h4>
+    </div>
+    <div class="taskItem" id="taskItem_1">
+        <h4>Task item 1</h4>
+    </div>
+    <div class="taskItemDone" id="taskItem_2">
+        <h4>Task item 2 Done</h4>
+    </div>
+</div>
+
+<div class="modal" id="createNewItemModal">
+    <div class="modal-content">
+        <h2>Create Item modal</h2>
+            <form action="" method="get">
+                <div class="newItemTitleInput">
+                    <p>Title:</p>
+                    <input id="newItemTitle" name="newItemTitle" placeholder="Task title">
+                </div>
+                <div class="newItemDescriptionInput">
+                    <p>Description:</p>
+                    <textarea name="newItemDescription" id="newItemDescription" rows="1" placeholder="Description"></textarea>
+                </div>
+                <div class="newItemPrioritySelector">
+                    <p>Priority:</p>
+                    <select name="newItemPriority" id="newItemPriority">
+                        <option value="high">high</option>
+                        <option value="normal">normal</option>
+                        <option value="low">low</option>
+                    </select>
+                </div>
+                <div id="newItemButtons" class="controls">
+                    <button id="cancelButton" type="submit">Cancel</button>
+                    <button id="submitButton" type="submit">Save</button>
+                </div>
+            </form>
+    </div>
+</div>
+
+</body>
+</html>
