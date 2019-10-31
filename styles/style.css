@@ -69,6 +69,7 @@ textarea {
     text-align: center;
     padding: 20px 0;
 }
+
 .search-form {
     grid-area: search;
 }
@@ -85,9 +86,15 @@ textarea {
 .create-task {
     grid-area: createButton;
 }
+
 ::placeholder { color: black; }
 ::-webkit-input-placeholder { color: black; }
 ::-moz-placeholder { color: black; }
+
+.header h1 {
+    width: 100%;
+    padding-left: 13px;
+}
 
 .search-form button {
     position: absolute;
@@ -130,6 +137,18 @@ textarea {
 
 .newItemPrioritySelector {
     padding-bottom: 63px;
+}
+
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+}
+
+.footer p {
+    padding-left: 13px;
+    font-weight: bold;
 }
 
 .taskList{

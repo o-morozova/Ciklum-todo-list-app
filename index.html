@@ -8,8 +8,10 @@
     <script defer src="scripts/main.js"></script>
 </head>
 <body>
-<h1>TODOList</h1>
-<hr>
+<div class="header">
+    <h1>TODOList</h1>
+    <hr>
+</div>
 
 <div class="grid-container">
     <div class="search-form">
@@ -61,11 +63,10 @@
 
 <div class="modal" id="createNewItemModal">
     <div class="modal-content">
-        <h2>Create Item modal</h2>
             <form action="" method="get">
                 <div class="newItemTitleInput">
                     <p>Title:</p>
-                    <input id="newItemTitle" name="newItemTitle" placeholder="Task title">
+                    <input id="newItemTitle" name="newItemTitle" placeholder="Title">
                 </div>
                 <div class="newItemDescriptionInput">
                     <p>Description:</p>
@@ -74,9 +75,9 @@
                 <div class="newItemPrioritySelector">
                     <p>Priority:</p>
                     <select name="newItemPriority" id="newItemPriority">
-                        <option value="high">high</option>
-                        <option value="normal">normal</option>
-                        <option value="low">low</option>
+                        <option value="high">High</option>
+                        <option value="normal">Normal</option>
+                        <option value="low">Low</option>
                     </select>
                 </div>
                 <div id="newItemButtons" class="controls">
@@ -85,6 +86,11 @@
                 </div>
             </form>
     </div>
+</div>
+
+<div class="footer">
+    <hr>
+    <p>Olha Morozova</p>
 </div>
 
 </body>
