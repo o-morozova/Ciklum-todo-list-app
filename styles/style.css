@@ -10,6 +10,51 @@ body{
     font-family: 'Arial', sans-serif;
 }
 
+hr {
+    border-top: 2px solid #000000;
+}
+
+form {
+    position: relative;
+
+}
+
+input {
+    width: 100%;
+    height: 45px;
+    border: 2px solid #000000;
+    outline: none;
+    padding-left: 3px;
+    background: #FFFFFF;
+}
+
+select {
+    height: 45px;
+    border: 2px solid #000000;
+    width: 100%;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background: url('../images/icon.jpg');
+    background-repeat: no-repeat;
+    background-size: 40px 40px;
+    background-position: right 0;
+    padding-left: 3px;
+}
+
+input[type="submit"] {
+    border-radius: 15px;
+    text-align: center;
+}
+
+textarea {
+    width: 100%;
+    resize: none;
+    padding: 30px 3px;
+    border: 2px solid #000000;
+    font-family: 'Arial', sans-serif;
+}
+
 .grid-container {
     display: grid;
     grid:
@@ -40,33 +85,9 @@ body{
 .create-task {
     grid-area: createButton;
 }
-
-hr {
-    border-top: 2px solid #000000;
-}
-
-form {
-    position: relative;
-
-}
-
-input {
-    width: 100%;
-    height: 45px;
-    border: 2px solid #000000;
-    outline: none;
-    padding-left: 3px;
-    background: #FFFFFF;
-}
-
-#searchInput {
-    padding-left: 39px;
-}
-
+::placeholder { color: black; }
 ::-webkit-input-placeholder { color: black; }
 ::-moz-placeholder { color: black; }
-:-ms-input-placeholder { color: black;; }
-:-o-input-placeholder { color: black;; }
 
 .search-form button {
     position: absolute;
@@ -81,39 +102,9 @@ input {
 
 .search-form button:before {
     content: "\f002";
-    font-family: FontAwesome;
+    font-family: 'FontAwesome', serif;
     font-size: 16px;
     color: #000000;
-}
-
-select {
-    height: 45px;
-    border: 2px solid #000000;
-    width: 100%;
-    appearance:none;
-    -webkit-appearance:none;
-    -moz-appearance:none;
-    -ms-appearance:none;
-    background:url('../images/icon.jpg');
-    background-repeat:no-repeat;
-    background-size:40px 40px;
-    background-position:right 0px;
-    padding-left: 3px;
-}
-
-input[type="submit"] {
-    border-radius: 15px;
-    text-align: center;
-}
-
-/*styles for a whole list of tasks*/
-.taskList{
-    display: none;
-}
-
-/*styles for a particular task item*/
-.taskItem{
-
 }
 
 .modal {
@@ -137,6 +128,22 @@ input[type="submit"] {
     width: 20%;
 }
 
+.newItemPrioritySelector {
+    padding-bottom: 63px;
+}
+
+.taskList{
+    display: none;
+}
+
+.taskItem{
+
+}
+
+#searchInput {
+    padding-left: 39px;
+}
+
 #newItemButtons button {
     display:inline-block;
     background-color: #FFFFFF;
@@ -148,16 +155,4 @@ input[type="submit"] {
     margin: 4px 2px;
     cursor: pointer;
     border-radius: 16px;
-}
-
-.newItemPrioritySelector {
-    padding-bottom: 63px;
-}
-
-textarea {
-    width: 100%;
-    resize: none;
-    padding: 30px 3px;
-    border: 2px solid #000000;
-    font-family: 'Arial', sans-serif;
 }
