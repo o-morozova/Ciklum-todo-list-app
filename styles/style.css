@@ -70,6 +70,29 @@ textarea {
     padding: 20px 0;
 }
 
+.grid-dynamic-container {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    padding: 10px;
+}
+
+.taskItem, .taskItemDone {
+    border: 1px solid #000000;
+    padding: 200px;
+    margin: 50px;
+    font-size: 30px;
+    text-align: center;
+    width: 30%;
+}
+
+.taskItem {
+
+}
+
+.taskItemDone {
+
+}
+
 .search-form {
     grid-area: search;
 }
@@ -144,19 +167,12 @@ textarea {
     left: 0;
     bottom: 0;
     width: 100%;
+    background: #FFFFFF;
 }
 
 .footer p {
     padding-left: 13px;
     font-weight: bold;
-}
-
-.taskList{
-    display: none;
-}
-
-.taskItem{
-
 }
 
 #searchInput {
