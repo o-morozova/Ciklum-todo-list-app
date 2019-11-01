@@ -63,6 +63,7 @@ textarea {
 ;
     grid-gap: 20px;
     padding: 10px;
+    max-width: 600px;
 }
 
 .grid-container > div {
@@ -74,17 +75,19 @@ textarea {
     display: grid;
     grid-template-columns: auto auto auto;
     grid-gap:20px;
-    padding: 10px;
+    position: relative;
+    max-width: 600px;
 }
 
 .taskItem, .taskItemDone {
     border: 2px solid #000000;
-    padding: 0 10px;
+    padding: 0 30px;
     margin: 50px;
     font-size: 30px;
-    text-align: center;
-    width: 250px;
+    text-align: left;
+    width: 350px;
     height: 500px;
+    position: relative;
 }
 
 .task-item-title, .task-item-description {
@@ -96,21 +99,30 @@ textarea {
     border-radius: 16px;
     padding: 1px 2px;
     font-weight: bold;
-    margin: 4px 2px;
+    /*margin: 4px 2px;*/
+    text-align: center;
+    display: inline-block;
+    width: 50%;
+    bottom: 35px;
+    position: absolute;
 }
 
 .dropbtn {
-    background-color: #FFFFFF;
     padding: 16px;
     font-size: 16px;
     border: 2px solid #000000;
     border-radius: 16px;
     text-align: center;
+    height: 56px;
+    background-color: transparent;
 }
 
 .task-item-more {
-    position: relative;
+    position: absolute;
     display: inline-block;
+    height: 56px;
+    bottom: 35px;
+    right: 30px;
 }
 
 .task-item-more-content {
@@ -119,7 +131,7 @@ textarea {
     background-color: #f1f1f1;
     min-width: 160px;
     z-index: 1;
-    border: 2px solid #000000;
+    border: 1px solid #000000;
 }
 
 .task-item-more-content a {
@@ -135,7 +147,7 @@ textarea {
 .task-item-more:hover .task-item-more-content {display: block;}
 
 .taskItemDone {
-
+    background-color: #f1f1f1;
 }
 
 .search-form {
@@ -229,7 +241,7 @@ textarea {
     display:inline-block;
     background-color: #FFFFFF;
     border: 2px solid #000000;
-    color: black;
+    color: #000000;
     padding: 10px 20px;
     text-align: center;
     text-decoration: none;

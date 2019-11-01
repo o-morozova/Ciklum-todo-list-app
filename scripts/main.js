@@ -28,57 +28,68 @@ cancelModal.onclick = hideModal;
 function createTaskItemHtml(title, description, priority, id) {
     const index = `${id}`;
     const item = document.createElement('div');
-    item.innerHTML = `<div class="taskItem" id="taskItem_${id}">
-                    <div class="task-item-title">
+    item.innerHTML = `<div class="task-item-title">
                         <p>${title}</p>
-                    </div>
-                    <div class="task-item-description">
-                      <p>${description}</p>
-                    </div>
-                    <div class="task-item-priority">
+                      </div>
+                      <div class="task-item-description">
+                        <p>${description}</p>
+                      </div>
+                      <div class="task-item-priority">
                         <p>${priority}</p>
-                    </div>
-                    <div class="task-item-more">
+                      </div>
+                      <div class="task-item-more">
                         <button class="dropbtn">...</button>
-                          <div class="task-item-more-content">
-                            <a href="#">done</a>
-                            <a href="#">edit</a>
-                            <a href="#">delete</a>
-                          </div>
-                    </div>
-                </div>
+                        <div class="task-item-more-content">
+                        </div>
+                      </div>
                 `;
+    item.setAttribute('class','taskItem');
+    item.setAttribute('id',`taskItem_${id}`);
     list.appendChild(item);
-    const moreMenu = document.querySelector(`#taskItem_${id}>.task-item-more`);
+    const moreMenu = document.querySelector(`#taskItem_${id} .task-item-more-content`);
 
-    const completeButton = document.createElement('button');
-    completeButton.setAttribute('type','button');
+    const completeButton = document.createElement('a');
+    completeButton.setAttribute('href','#');
     completeButton.setAttribute('class','completeButton');
-    completeButton.innerText = 'Complete';
+    completeButton.innerText = 'done';
     completeButton.addEventListener('click',function(event){
         items[index].isCompleted = true;
-        document.querySelector(`#taskItem_${id}`).setAttribute('style','background-color:gray');
+        document.querySelector(`#taskItem_${id}`).setAttribute('class','taskItemDone');
     });
     moreMenu.appendChild(completeButton);
 
-    const editButton = document.createElement('button');
-    editButton.setAttribute('type','button');
+    const editButton = document.createElement('a');
+    editButton.setAttribute('href','#');
     editButton.setAttribute('class','editButton');
-    editButton.innerText = 'Edit';
+    editButton.innerText = 'edit';
     editButton.addEventListener('click',function(event){
         console.log('edit is pressed');
     });
     moreMenu.appendChild(editButton);
 
-    const deleteButton = document.createElement('button');
-    deleteButton.setAttribute('type','button');
+    const deleteButton = document.createElement('a');
+    deleteButton.setAttribute('href','#');
     deleteButton.setAttribute('class','deleteButton');
-    deleteButton.innerText = 'Delete';
+    deleteButton.innerText = 'delete';
     deleteButton.addEventListener('click',function(event){
         items.splice(index,1);
         list.removeChild(item);
     });
     moreMenu.appendChild(deleteButton);
+}
+
+//rework
+function addAllItemsToTheList(){
+    for (let item in items){
+        createTaskItemHtml(item.title, item.description, item.priority, item.id);
+    }
+}
+//rework
+function removeAllItemsInList(){
+    let removeItemsArray = list.getElementsByClassName('taskItem');
+    for (let item in removeItemsArray){
+        list.removeChild(item);
+    }
 }
 
 function newItemSubmitted (event){
@@ -97,6 +108,8 @@ function newItemSubmitted (event){
             isCompleted : false
         });
         createTaskItemHtml(TITLE, DESCRIPTION, PRIORITY, ID);
+    } else {
+        alert('Impossible to save, Title and Priority fields are required!');
     }
     hideModal();
     newItemTitle.value = '';
