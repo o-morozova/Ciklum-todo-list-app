@@ -30,7 +30,7 @@ function createTaskItemHtml(title, description, priority, id) {
     const item = document.createElement('div');
     item.innerHTML = `<div class="taskItem" id="taskItem_${id}">
                     <div class="task-item-title">
-                        <h4>${title}</h4>
+                        <p>${title}</p>
                     </div>
                     <div class="task-item-description">
                       <p>${description}</p>
@@ -39,6 +39,12 @@ function createTaskItemHtml(title, description, priority, id) {
                         <p>${priority}</p>
                     </div>
                     <div class="task-item-more">
+                        <button class="dropbtn">...</button>
+                          <div class="task-item-more-content">
+                            <a href="#">done</a>
+                            <a href="#">edit</a>
+                            <a href="#">delete</a>
+                          </div>
                     </div>
                 </div>
                 `;
@@ -69,7 +75,7 @@ function createTaskItemHtml(title, description, priority, id) {
     deleteButton.setAttribute('class','deleteButton');
     deleteButton.innerText = 'Delete';
     deleteButton.addEventListener('click',function(event){
-        items[index].splice(index,1);
+        items.splice(index,1);
         list.removeChild(item);
     });
     moreMenu.appendChild(deleteButton);
