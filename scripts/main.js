@@ -12,13 +12,17 @@ const submitNewItem = document.getElementById("submitButton");//save button elem
 const cancelModal = document.getElementById("cancelButton");
 let items  = [];
 
-createNewItem.onclick = function() {
-    modal.style.display = "block";
+function displayModal() {
+    modal.style.display = 'block';
 };
 
-cancelModal.onclick = function() {
-    modal.style.display = "none";
+function hideModal() {
+    modal.style.display = 'none';
 };
+
+
+createNewItem.onclick = displayModal;
+cancelModal.onclick = hideModal;
 
 function createTaskItemHtml(title, description, priority, id) {
     const item = `<div class="taskItem" id="taskItem_${id}">
@@ -46,7 +50,8 @@ function createTaskItemHtml(title, description, priority, id) {
     list.insertAdjacentHTML(position,item);
 }
 
-function newItemSubmitted (even){
+function newItemSubmitted (event){
+    event.preventDefault();
     const TITLE = newItemTitle.value;
     const PRIORITY = newItemPriority.value;
     const DESCRIPTION = newItemDescription.value;
@@ -63,10 +68,14 @@ function newItemSubmitted (even){
             isCompleted : false
         });
     }
+    hideModal();
+    newItemTitle.value = '';
+    newItemDescription.value = '';
+    newItemPriority.value = 'high';
 }
 submitNewItem.addEventListener("click",newItemSubmitted);
-submitNewItemForm.addEventListener("keyup",function(even){
+submitNewItemForm.addEventListener("keyup",function(event){
     if(event.keyCode === 13){
-        newItemSubmitted(even);
+        newItemSubmitted(event);
     }
 });
