@@ -20,7 +20,6 @@ function hideModal() {
     modal.style.display = 'none';
 };
 
-
 createNewItem.onclick = displayModal;
 cancelModal.onclick = hideModal;
 
@@ -36,14 +35,26 @@ function createTaskItemHtml(title, description, priority, id) {
                         <p>${priority}</p>
                     </div>
                     <div class="task-item-more">
-                        <form action="">
-                            <select name="more-menu" id="more-menu">
-                                <option value="done">all</option>
-                                <option value="open">edit</option>
-                                <option value="done">delete</option>
-                            </select>
-                        </form>
+                        <button type="button" class="completeButton">Complete</button>
+                        <button type="button" class="editButton">Edit</button>
+                        <button type="button" class="deleteButton">Delete</button>
                     </div>
+                    <script type="javascript">
+                        const thisItem = document.getElementById('taskItem_${id}');
+                        const completeButton = document.querySelector('#taskItem_${id}>.completeButton);
+                        const editButton = document.querySelector('#taskItem_${id}>.editButton);
+                        const deleteButton = document.querySelector('#taskItem_${id}>.deleteButton);
+                        const index = ${id};
+                        
+                        completeButton.onclick = function(event) {
+                          items[index].isCompleted = true;
+                        }
+                        deleteButton.onclick = function(event) {
+                          items[index].splice(index,1);
+                          thisItem.parentNode.removeChild(thisItem);
+                        }
+                        
+                    </script>
                 </div>
                 `;
     const position = 'beforeend';
