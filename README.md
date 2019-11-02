@@ -11,7 +11,7 @@ Using **TODOList** you can:
 
 All you need is any modern web-browser like Chrome, Mozilla Firefox, Safari, etc.
 
-###Known issues
+### Known issues 
 Hitting "Enter" in the search form leads to opening a new page, which is removing all items from the page and the memory.
 
 ### Running
