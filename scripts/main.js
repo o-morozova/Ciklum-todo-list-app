@@ -10,30 +10,25 @@ const createNewItem = document.getElementById('createButton');//create item butt
 
 const modal = document.getElementById('createNewItemModal');//Modal window for adding items
 const newItemTitle = document.getElementById('newItemTitle');//title element of the new item
-const newItemDescription = document.getElementById('newItemDescription');//description element of the new item
-const newItemPriority = document.getElementById('newItemPriority');//priority element of the new item
+const newItemDescription = document.getElementById('newItemDescription');
+const newItemPriority = document.getElementById('newItemPriority');
 const submitNewItem = document.getElementById('submitButton');//save button element
 const cancelModal = document.getElementById('cancelButton');//cancel item submit button
 
 const editModal = document.getElementById('editItemModal');//Modal window for editing items
 const editItemTitle = document.getElementById('editItemTitle');//title element of the new item
-const editItemDescription = document.getElementById('editItemDescription');//description element of the new item
-const editItemPriority = document.getElementById('editItemPriority');//priority element of the new item
-const editItemStatus = document.getElementById('editItemStatus');//priority element of the new item
+const editItemDescription = document.getElementById('editItemDescription');
+const editItemPriority = document.getElementById('editItemPriority');
 const editItemSubmit = document.getElementById('editSubmitButton');//save button element
 const editItemCancel = document.getElementById('editCancelButton');
 
 let items  = [];//array to store all objects of the created tasks
 
 
-
-
-function displayModal() {
-    modal.style.display = 'block';
-}
-
-function displayEditForm() {
-    editModal.style.display = 'block';
+function resetId(){
+    for(let i = 0; i < items.length; i++){
+        items[i].id = i;
+    }
 }
 
 function hideModal() {
@@ -44,27 +39,60 @@ function hideEditModal() {
     editModal.style.display = 'none';
 }
 
+function displayModal() {
+    modal.style.display = 'block';
+}
+
+function addAllItemsToTheList(itemsList){
+    for (let i = 0; i < itemsList.length; ++i){
+        const item = itemsList[i];
+        createTaskItemHtml(item.title, item.description, item.priority, item.id);
+    }
+}
+
+function removeAllItemsInList(){
+    while(list.childElementCount > 0){
+        list.removeChild(list.querySelector('.taskItem, .taskItemDone'));
+    }
+}
+
+function editItem(title, description, priority, id) {
+    items[id].title = title;
+    items[id].description = description;
+    items[id].priority = priority;
+}
+
 createNewItem.onclick = displayModal;
 cancelModal.onclick = hideModal;
 editItemCancel.onclick = hideEditModal;
 
-//to finish
-function fillEditForm(id) {
-    const index = `${id}`;
-    let item = items[index];
+function displayAndFillEditForm(id) {
+    editModal.style.display = 'block';
+    let item = items[id];
 
     const TITLE = item.title;
     const DESC = item.description;
     const PRIORITY = item.priority;
-    const STATUS = item.status;
 
     editItemTitle.value = TITLE;
     editItemDescription.value = DESC;
     editItemPriority.value = PRIORITY;
-    editItemStatus.value = STATUS;
 
-    editItemSubmit.onclick = function (id) {
-    }
+    editItemSubmit.addEventListener('click',function () {
+        const editedTitle = editItemTitle.value;
+        const editedDescription = editItemDescription.value;
+        const editedPriority = editItemPriority.value;
+        if ((editedTitle === TITLE) &&
+            (editedDescription === DESC) &&
+            (editedPriority === PRIORITY)){
+            //nothing changed
+            return;
+        }
+        editItem(editedTitle,editedDescription,editedPriority,id);
+        removeAllItemsInList();
+        addAllItemsToTheList(items);
+        editModal.style.display = 'none';
+    });
 }
 
 function createTaskItemHtml(title, description, priority, id) {
@@ -97,7 +125,7 @@ function createTaskItemHtml(title, description, priority, id) {
     completeButton.setAttribute('href','#');
     completeButton.setAttribute('class','completeButton');
     completeButton.innerText = 'done';
-    completeButton.addEventListener('click',function(event){
+    completeButton.addEventListener('click',function(){
         items[index].status = 'done';
         document.querySelector(`#taskItem_${id}`).setAttribute('class','taskItemDone');
     });
@@ -107,8 +135,8 @@ function createTaskItemHtml(title, description, priority, id) {
     editButton.setAttribute('href','#');
     editButton.setAttribute('class','editButton');
     editButton.innerText = 'edit';
-    editButton.addEventListener('click',function(event){
-        console.log('edit is pressed');
+    editButton.addEventListener('click',function(){
+        displayAndFillEditForm(index);
     });
     moreMenu.appendChild(editButton);
 
@@ -116,32 +144,13 @@ function createTaskItemHtml(title, description, priority, id) {
     deleteButton.setAttribute('href','#');
     deleteButton.setAttribute('class','deleteButton');
     deleteButton.innerText = 'delete';
-    deleteButton.addEventListener('click',function(event){
+    deleteButton.addEventListener('click',function(){
         items.splice(index,1);
         resetId();
         removeAllItemsInList();
         addAllItemsToTheList(items);
     });
     moreMenu.appendChild(deleteButton);
-}
-
-function resetId(){
-    for(let i = 0; i < items.length; i++){
-        items[i].id = i;
-    }
-}
-
-function addAllItemsToTheList(itemsList){
-    for (let i = 0; i < itemsList.length; ++i){
-        const item = itemsList[i];
-        createTaskItemHtml(item.title, item.description, item.priority, item.id);
-    }
-}
-
-function removeAllItemsInList(){
-    while(list.childElementCount > 0){
-        list.removeChild(list.querySelector('.taskItem, .taskItemDone'));
-    }
 }
 
 function newItemSubmitted (event){
@@ -203,23 +212,17 @@ function executeSearch(){
 
     removeAllItemsInList();
     addAllItemsToTheList(filteredItems);
-
-    // if (filteredItems.length === 0){
-    //     if (confirm('No items were found to match the entered search conditions. Reset the search?')){
-    //         removeAllItemsInList();
-    //         addAllItemsToTheList(items);
-    //         priorityFilter.value = 'all';
-    //         statusFilter.value = 'all';
-    //     }
-    // }
-
-    searchInput.value = '';
-    // priorityFilter.value = 'all';
-    // statusFilter.value = 'all';
+    // searchInput.value = '';
     filteredItems = [];
 }
 
 submitNewItem.addEventListener('click',newItemSubmitted);
 searchButton.addEventListener('click',executeSearch);
+searchInput.addEventListener('keydown', function (e) {
+    e.preventDefault();
+    if (e.key === 'Enter') {
+    executeSearch();
+    }
+});
 statusFilter.addEventListener('change',executeSearch);
 priorityFilter.addEventListener('change',executeSearch);

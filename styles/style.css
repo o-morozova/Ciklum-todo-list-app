@@ -280,7 +280,7 @@ textarea {
     padding-left: 39px;
 }
 
-#newItemButtons button {
+.controls button {
     display:inline-block;
     background-color: #FFFFFF;
     border: 2px solid #000000;
