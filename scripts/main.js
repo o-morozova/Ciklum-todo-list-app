@@ -112,6 +112,8 @@ function createTaskItemHtml(title, description, priority, id) {
                         <div class="task-item-more-content">
                         </div>
                       </div>
+                      <div class="checkbox-checked">
+                      </div> 
                 `;
     items[index].status === 'open' ?
         item.setAttribute('class','taskItem') :
@@ -169,8 +171,6 @@ function newItemSubmitted (event){
             status : 'open'
         });
         createTaskItemHtml(TITLE, DESCRIPTION, PRIORITY, ID);
-    } else {
-        alert('Impossible to save, Title and Priority fields are required!');
     }
     hideModal();
     newItemTitle.value = '';

@@ -262,6 +262,10 @@ textarea {
     padding-bottom: 63px;
 }
 
+.editItemPrioritySelector {
+    padding-bottom: 63px;
+}
+
 .footer {
     position: fixed;
     left: 0;
@@ -276,10 +280,6 @@ textarea {
 
 }
 
-#searchInput {
-    padding-left: 39px;
-}
-
 .controls button {
     display:inline-block;
     background-color: #FFFFFF;
@@ -291,4 +291,8 @@ textarea {
     margin: 4px 2px;
     cursor: pointer;
     border-radius: 16px;
+}
+
+#searchInput {
+    padding-left: 39px;
 }
