@@ -15,7 +15,7 @@ All you need is any modern web-browser like Chrome, Mozilla Firefox, Safari, etc
 Hitting "Enter" in the search form leads to opening a new page, which is removing all items from the page and the memory.
 
 ### Running
-Open the dist/index.html.
+Open index.html.
 
 ### Built With
 * [Javascript](https://www.javascript.com/) — High-level, interpreted programming language
