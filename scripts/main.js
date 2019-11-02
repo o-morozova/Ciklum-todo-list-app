@@ -6,24 +6,57 @@ const dropdownFilter = document.getElementById('statusDropdown');//status filter
 const statusFilter = document.getElementById('priorityDropdown');//priority filter
 const createNewItem = document.getElementById('createButton');
 const modal = document.getElementById('createNewItemModal');
-const submitNewItemForm = document.getElementById('createNewItemModal');//priority filter
+const editModal = document.getElementById('editItemModal');
 const newItemTitle = document.getElementById('newItemTitle');//title element of the new item
+const editItemTitle = document.getElementById('editItemTitle');//title element of the new item
 const newItemDescription = document.getElementById('newItemDescription');//description element of the new item
+const editItemDescription = document.getElementById('editItemDescription');//description element of the new item
 const newItemPriority = document.getElementById('newItemPriority');//priority element of the new item
+const editItemPriority = document.getElementById('editItemPriority');//priority element of the new item
+const editItemStatus = document.getElementById('editItemStatus');//priority element of the new item
 const submitNewItem = document.getElementById('submitButton');//save button element
+const editItemSubmit = document.getElementById('editSubmitButton');//save button element
 const cancelModal = document.getElementById('cancelButton');
+const editItemCancel = document.getElementById('editCancelButton');
 let items  = [];
 
 function displayModal() {
     modal.style.display = 'block';
 }
 
+function displayEditForm() {
+    editModal.style.display = 'block';
+}
+
 function hideModal() {
     modal.style.display = 'none';
 }
 
+function hideEditModal() {
+    editModal.style.display = 'none';
+}
+
 createNewItem.onclick = displayModal;
 cancelModal.onclick = hideModal;
+editItemCancel.onclick = hideEditModal;
+
+function fillEditForm(id) {
+    const index = `${id}`;
+    let item = items[index];
+
+    const TITLE = item.title;
+    const DESC = item.description;
+    const PRIORITY = item.priority;
+    const STATUS = item.isCompleted;
+
+    editItemTitle.value = TITLE;
+    editItemDescription.value = DESC;
+    editItemPriority.value = PRIORITY;
+    editItemStatus.value = STATUS;
+
+    editItemSubmit.onclick = function (id) {
+    }
+}
 
 function createTaskItemHtml(title, description, priority, id) {
     const index = `${id}`;
@@ -73,22 +106,25 @@ function createTaskItemHtml(title, description, priority, id) {
     deleteButton.innerText = 'delete';
     deleteButton.addEventListener('click',function(event){
         items.splice(index,1);
-        list.removeChild(item);
+        removeAllItemsInList();
+        addAllItemsToTheList();
     });
     moreMenu.appendChild(deleteButton);
 }
 
-//rework
+
 function addAllItemsToTheList(){
-    for (let item in items){
+    for (let i = 0; i < items.length; ++i){
+        const item = items[i];
         createTaskItemHtml(item.title, item.description, item.priority, item.id);
     }
 }
-//rework
+
 function removeAllItemsInList(){
-    let removeItemsArray = list.getElementsByClassName('taskItem');
-    for (let item in removeItemsArray){
-        list.removeChild(item);
+    let i = 0;
+    while(list.childElementCount > 0){
+        list.removeChild(list.querySelector('#taskItem_' + i));
+        i++;
     }
 }
 
@@ -117,8 +153,8 @@ function newItemSubmitted (event){
     newItemPriority.value = 'high';
 }
 submitNewItem.addEventListener('click',newItemSubmitted);
-submitNewItemForm.addEventListener('keyup',function(event){
-    if(event.keyCode === 13){
-        newItemSubmitted(event);
-    }
-});
+// modal.addEventListener('keyup',function(event){
+//     if(event.keyCode === 13){
+//         newItemSubmitted(event);
+//     }
+// });

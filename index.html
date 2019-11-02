@@ -79,6 +79,40 @@
         </form>
     </div>
 </div>
+<div class="modal" id="editItemModal">
+    <div class="modal-content">
+        <form action="" method="get">
+            <h4>Edit item</h4>
+            <div class="editItemTitleInput">
+                <p>Title:</p>
+                <input id="editItemTitle" name="editItemTitle">
+            </div>
+            <div class="editItemDescriptionInput">
+                <p>Description:</p>
+                <textarea name="editItemDescription" id="editItemDescription" rows="1"></textarea>
+            </div>
+            <div class="editItemPrioritySelector">
+                <p>Priority:</p>
+                <select name="editItemPriority" id="editItemPriority">
+                    <option value="high">High</option>
+                    <option value="normal">Normal</option>
+                    <option value="low">Low</option>
+                </select>
+            </div>
+            <div class="editItemStatusSelector">
+                <p>Status:</p>
+                <select name="editItemStatus" id="editItemStatus">
+                    <option value="open">open</option>
+                    <option value="done">done</option>
+                </select>
+            </div>
+            <div id="editItemButtons" class="controls">
+                <button id="editCancelButton" type="button">Cancel</button>
+                <button id="editSubmitButton" type="button">Edit</button>
+            </div>
+        </form>
+    </div>
+</div>
 
 <div class="footer">
     <hr>
