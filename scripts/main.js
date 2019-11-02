@@ -218,7 +218,7 @@ function executeSearch(){
 
 submitNewItem.addEventListener('click',newItemSubmitted);
 searchButton.addEventListener('click',executeSearch);
-searchInput.addEventListener('keydown', function (e) {
+searchInput.addEventListener('keyup', function (e) {
     e.preventDefault();
     if (e.key === 'Enter') {
     executeSearch();
