@@ -118,12 +118,18 @@ function createTaskItemHtml(title, description, priority, id) {
     deleteButton.innerText = 'delete';
     deleteButton.addEventListener('click',function(event){
         items.splice(index,1);
+        resetId();
         removeAllItemsInList();
         addAllItemsToTheList(items);
     });
     moreMenu.appendChild(deleteButton);
 }
 
+function resetId(){
+    for(let i = 0; i < items.length; i++){
+        items[i].id = i;
+    }
+}
 
 function addAllItemsToTheList(itemsList){
     for (let i = 0; i < itemsList.length; ++i){
@@ -133,10 +139,8 @@ function addAllItemsToTheList(itemsList){
 }
 
 function removeAllItemsInList(){
-    let i = 0;
     while(list.childElementCount > 0){
-        list.removeChild(list.querySelector('#taskItem_' + i));
-        i++;
+        list.removeChild(list.querySelector('.taskItem, .taskItemDone'));
     }
 }
 
@@ -175,12 +179,12 @@ function executeSearch(){
     if(searchKey === '' && priorityKey === 'all' && statusKey === 'all'){
         removeAllItemsInList();
         addAllItemsToTheList(items);
-        alert('No filtering conditions provided, displaying all items')
+        // alert('No filtering conditions provided, displaying all items')
         return;
     }
 
     if(items.length === 0){
-        alert('The list is empty, nothing to filter')
+        // alert('The list is empty, nothing to filter')
         return;
     }
 
@@ -200,18 +204,22 @@ function executeSearch(){
     removeAllItemsInList();
     addAllItemsToTheList(filteredItems);
 
-    if (filteredItems.length === 0){
-        if (confirm('No items were found to match the entered search conditions. Reset the search?')){
-            removeAllItemsInList();
-            addAllItemsToTheList(items);
-        }
-    }
+    // if (filteredItems.length === 0){
+    //     if (confirm('No items were found to match the entered search conditions. Reset the search?')){
+    //         removeAllItemsInList();
+    //         addAllItemsToTheList(items);
+    //         priorityFilter.value = 'all';
+    //         statusFilter.value = 'all';
+    //     }
+    // }
 
     searchInput.value = '';
-    priorityFilter.value = 'all';
-    statusFilter.value = 'all';
+    // priorityFilter.value = 'all';
+    // statusFilter.value = 'all';
     filteredItems = [];
 }
 
 submitNewItem.addEventListener('click',newItemSubmitted);
 searchButton.addEventListener('click',executeSearch);
+statusFilter.addEventListener('change',executeSearch);
+priorityFilter.addEventListener('change',executeSearch);

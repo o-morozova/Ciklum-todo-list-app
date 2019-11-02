@@ -88,10 +88,44 @@ textarea {
     position: relative;
 }
 
+.checkbox-checked {
+    width:20px;
+    height:20px;
+    border: 1px solid #000;
+    display: inline-block;
+    background-color: #FFFFFF;
+    position: absolute;
+    top: -9px;
+    right: -9px;
+}
+
+.checkbox-checked:after {
+    content: '';
+    display: block;
+    width: 4px;
+    height: 7px;
+
+    position:relative;
+    top:4px;
+    left:7px;
+
+    border: solid #000;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+.taskItem>.checkbox-checked {
+    display: none;
+}
+
 .task-item-title, .task-item-description {
     font-weight: bold;
 }
 
+.task-item-title {
+    position: absolute;
+    margin-top: 20px;
+}
 .task-item-description {
     height: 200px;
     position: relative;
